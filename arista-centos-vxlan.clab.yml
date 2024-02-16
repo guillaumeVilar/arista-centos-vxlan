@@ -4,15 +4,6 @@ topology:
   kinds:
     ceos:
       enforce-startup-config: true
-      image: ceos-lab:latest
-  defaults:
-    kind: ceos
-    startup-config: init-configs/ceos-init.cfg
-
-topology:
-  kinds:
-    ceos:
-      enforce-startup-config: true
       image: ceosimage:4.31.1F
   nodes:
     host1:
