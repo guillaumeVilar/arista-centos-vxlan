@@ -34,8 +34,8 @@ ip link set dev br-vxlan1 up
 
 
 
-### Verification
-#### On VTEP2: 
+## Verification
+### On VTEP2: 
 ```
 # ip -d link show vxlan1
 # ip -d link show br-vxlan1
