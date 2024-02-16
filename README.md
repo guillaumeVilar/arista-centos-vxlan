@@ -15,10 +15,12 @@ yum install -y tcpdump
 ```
 
 ### Physical interface setup
+```
 ip addr add 10.0.0.2/24 dev et2
 ip route add 172.17.0.1/32 via 10.0.0.1
-
+```
 ### Vxlan setup
+```
 ip link del vxlan1
 ip link add vxlan1 type vxlan id 10000 remote 172.17.0.1 local 10.0.0.2 dstport 4789 dev et2
 bridge fdb append 00:00:00:00:00:00 dev vxlan1 dst 172.17.0.1
@@ -28,7 +30,7 @@ ip link add br-vxlan1 type bridge
 ip link set dev vxlan1 master br-vxlan1
 ip link set dev et1 master br-vxlan1 
 ip link set dev br-vxlan1 up
-
+```
 
 
 
