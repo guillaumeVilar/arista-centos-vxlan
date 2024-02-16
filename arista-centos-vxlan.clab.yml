@@ -1,0 +1,34 @@
+name: arista-centos-vxlan
+
+topology:
+  kinds:
+    ceos:
+      enforce-startup-config: true
+      image: ceos-lab:latest
+  defaults:
+    kind: ceos
+    startup-config: init-configs/ceos-init.cfg
+
+topology:
+  kinds:
+    ceos:
+      enforce-startup-config: true
+      image: ceosimage:4.31.1F
+  nodes:
+    host1:
+      kind: ceos
+      startup-config: init-configs/ceos-host1.cfg
+    vtep1:
+      kind: ceos
+      startup-config: init-configs/ceos-vtep1.cfg
+    vtep2:
+      kind: linux
+      image: centos:7.9.2009
+    host2:
+      kind: ceos
+      startup-config: init-configs/ceos-host2.cfg
+
+  links:
+    - endpoints: ["host1:eth1", "vtep1:eth1"]
+    - endpoints: ["vtep1:eth2", "vtep2:et2"]
+    - endpoints: ["vtep2:et1", "host2:eth1"]
